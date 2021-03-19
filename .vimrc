@@ -1,25 +1,28 @@
+set nocompatible
+
 " ===============
 " >> Plugins
 " ===============
 
 " Importing plug-ins
 call plug#begin()
-Plug 'nathanaelkane/vim-indent-guides' " indent guides
-Plug 'preservim/nerdtree' " showing file tree
-Plug 'vim-airline/vim-airline-themes' " themes for status bar
-Plug 'vim-airline/vim-airline' " status bar customization
+Plug 'cocopon/iceberg.vim' " colour scheme
+Plug 'dense-analysis/ale' " linting
 Plug 'junegunn/fzf' " fuzzy finder
 Plug 'junegunn/fzf.vim' " fuzzy finder for vim
-Plug 'cocopon/iceberg.vim' " colour scheme
+Plug 'nathanaelkane/vim-indent-guides' " indent guides
+Plug 'preservim/nerdtree' " showing file tree
 Plug 'sheerun/vim-polyglot' " syntax highlighting
-Plug 'dense-analysis/ale' " linting
 Plug 'tomtom/tcomment_vim' " easy commenting
+Plug 'vim-airline/vim-airline' " status bar customization
+Plug 'vim-airline/vim-airline-themes' " themes for status bar
 call plug#end()
-                                      
+
 " Iceberg.vim
 colo iceberg
 
 " ALE
+let g:ale_php_phpcs_standard='PSR12' " use PSR12 for PHP
 let g:ale_sign_column_always=1 " always show linting column
 
 " FZF
@@ -43,8 +46,8 @@ let g:airline_theme='angr'
 " Misc settings
 syntax on " enable syntax highlighting
 set showcmd " show typed command
-set tabstop=2 shiftwidth=2 expandtab " set indent width
 set timeoutlen=500 " shortens wait time between keystrokes
+set redrawtime=1000 " more time to redraw files before times out
 
 " Interface
 set showmatch " highlights matching brackets
@@ -54,13 +57,14 @@ set t_Co=256 " 256 colour
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
+" Indentation
+set expandtab " tabs become spaces
+set tabstop=2 shiftwidth=2 " default indent 2 spaces
+filetype indent on " check filetype for indent size
+
 " Line numbers
-set nu rnu
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set nu rnu " hybrid when in normal or visual
-  autocmd BufLeave,FocusLost,InsertEnter * set nornu " absolute when in insert
-augroup END
+runtime working.vim " always start with custom mappings
+command Vimnum :call ToggleNumbering() " :Vimnum toggles between showcase.vim and working.vim
 
 " Terminal settings
 nnoremap term :vert term ++cols=75<CR>
@@ -69,11 +73,12 @@ autocmd BufEnter * if (winnr("$") == 1 && &buftype == 'terminal') | q! | endif "
 
 " Search-related settings
 nnoremap snrp :%s/\<<C-r><C-w>\>/
-set ignorecase " ignores case when searching
+set ignorecase " not case-sensitive for lowercase
+set smartcase " case-sensitive only for uppercase
 set incsearch " shows results as typing
-" TODO: figure out best grep settings
- " nnoremap grep :vimgrep//j **/*<Left><Left><Left><Left><Left><Left><Left>
- " nnoremap cgrep :vimgrep/<C-r><C-w>/j **/*<CR> :copen<CR>
+" TODO: automatically open cw
+nnoremap grep :vimgrep!//j **/*<Left><Left><Left><Left><Left><Left><Left>
+nnoremap wgrep :vimgrep!/<C-r><C-w>/j **/*<CR> :copen<CR>
 
 " Window settings
 set splitbelow " splits are below
@@ -87,12 +92,8 @@ nnoremap [ :res -5<CR>
 let &t_SI.="\e[4 q" " blinking underscore in insert mode
 let &t_SR.="\e[5 q" " vertical bar in replace mode
 let &t_EI.="\e[2 q" " solid block otherwise
-autocmd InsertEnter,InsertLeave * set cul! " shows cursor line in insert mode 
+autocmd InsertEnter,InsertLeave * set cul! " shows cursor line in insert mode
 set scrolloff=4 " always show 4 lines above/below cursor where possible
-
-" Remapping
-noremap 0 _
-nnoremap U <C-r>
 
 " Ignoring typos
 command! W w
@@ -100,9 +101,31 @@ command! Q q
 command! Wq wq
 command! WQ wq
 
+" Remapping
+noremap 0 _
+nnoremap U <C-r>
+nnoremap bd :bd<CR>
+nnoremap bn :bn<CR>
+nnoremap bv :bp<CR>
+let mapleader=" "
+
 " Toggle remapping
 runtime carmela.vim " always start with custom mappings
 command Vimrc :call ToggleVimrc() " :Vimrc toggles between carmela.vim and pairing.vim
+
+" ===============
+" >> Functions
+" ===============
+
+function ToggleNumbering()
+  if g:showcase == 1
+    runtime working.vim
+    echom "Changed to working.vim"
+  else
+    runtime showcase.vim
+    echom "Changed to showcase.vim"
+  endif
+endfunction
 
 function ToggleVimrc()
   if g:custom == 1
