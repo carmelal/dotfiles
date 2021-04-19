@@ -9,4 +9,7 @@ unmap 'k
 unmap 'l
 iunmap ``
 
+" Use absolute numbering
+runtime showcase.vim
+
 let custom=0 " custom is off
