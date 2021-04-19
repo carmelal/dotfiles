@@ -44,7 +44,6 @@ let g:airline_theme='angr'
 " ===============
 
 " Misc settings
-syntax on " enable syntax highlighting
 set showcmd " show typed command
 set timeoutlen=500 " shortens wait time between keystrokes
 set redrawtime=1000 " more time to redraw files before times out
@@ -57,9 +56,12 @@ set t_Co=256 " 256 colour
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
+" Syntax highlighting
+syntax on " enable syntax highlighting
+set re=0 " use new regexp engine so VIM doesn't hate TS
+
 " Indentation
 set expandtab " tabs become spaces
-set tabstop=2 shiftwidth=2 " default indent 2 spaces
 filetype indent on " check filetype for indent size
 
 " Line numbers
