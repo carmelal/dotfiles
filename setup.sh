@@ -1,4 +1,4 @@
-# !/usr/bin/env bash
+#!/usr/bin/env bash
 
 ## FOR SPIN ENVIRONMENT ##
 if [ $SPIN ]; then
