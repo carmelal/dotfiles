@@ -1,3 +1,5 @@
+# !/usr/bin/env bash
+
 ## FOR SPIN ENVIRONMENT ##
 if [ $SPIN ]; then
   # move files from ~/dotfiles
