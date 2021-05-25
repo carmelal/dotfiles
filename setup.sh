@@ -1,9 +1,9 @@
 ## FOR SPIN ENVIRONMENT ##
 if [ $SPIN ]; then
   # move files from ~/dotfiles
-  ln -sf ~/dotfiles/vimrc.vim ~/vimrc.vim
-  ln -sf ~/dotfiles/zshrc.zsh ~/zshrc.zsh
-  ln -sf ~/dotfiles/vim ~/vim
+  ln -sf ~/dotfiles/vimrc.vim ~/.vimrc
+  ln -sf ~/dotfiles/zshrc.zsh ~/.zshrc
+  ln -sf ~/dotfiles/vim ~/.vim
 
   # install packages
   if ! command -v fzf &> /dev/null; then
