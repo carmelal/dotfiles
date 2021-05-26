@@ -17,4 +17,4 @@ fi
 
 # Run VimPlug
 echo "Running VimPlug..."
-vim +VimPlug +qa!
+vim +PlugInstall +qa!
