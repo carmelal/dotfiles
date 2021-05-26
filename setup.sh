@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Run VimPlug
-echo "Running VimPlug..."
-vim +VimPlug +qa!
-
 ## FOR SPIN ENVIRONMENT ##
 if [ $SPIN ]; then
   # move files from ~/dotfiles
@@ -19,3 +15,6 @@ if [ $SPIN ]; then
   fi
 fi
 
+# Run VimPlug
+echo "Running VimPlug..."
+vim +VimPlug +qa!
