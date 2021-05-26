@@ -14,5 +14,6 @@ if [ $SPIN ]; then
   fi
   }} || {
   echo "Setup not work :("
+  }
 fi
 
