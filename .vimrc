@@ -19,11 +19,23 @@ Plug 'vim-airline/vim-airline-themes' " themes for status bar
 call plug#end()
 
 " Iceberg.vim
+" TODO: only use colour if checked installed
 colo iceberg
 
 " ALE
 let g:ale_php_phpcs_standard='PSR12' " use PSR12 for PHP
 let g:ale_sign_column_always=1 " always show linting column
+let g:ale_open_list = 1 " open window showing errors
+" TODO: add more linters
+" not sure if these work yet
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['eslint', 'prettier'],
+\   'ruby': ['rubocop'],
+\}
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_fix_on_save = 1 " fix linting errors on save
 
 " FZF
 set rtp+=~/.fzf
@@ -35,6 +47,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeShowHidden=1 " show hidden files too
 
 " Airline
+let g:airline#extensions#ale#enabled = 1 " integrate with ALE
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme='angr'
