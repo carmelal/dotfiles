@@ -8,6 +8,9 @@ alias la='ls -aG'
 alias lss='git branch; ls -G'
 alias laa='git branch; ls -aG'
 
+export CLICOLOR=1
+# TODO: make better colour scheme
+export LSCOLORS=gxfxcxdxExegedabagaced
 
 ## USE SPIN DEFAULT PROMPT UNTIL I FIGURE OUT HOW TO MAKE MY OWN
 
