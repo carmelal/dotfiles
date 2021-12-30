@@ -1,0 +1,25 @@
+[diff]
+	algorithm = patience
+[protocol]
+	version = 2
+[url "https://github.com/Shopify/"]
+	insteadOf = git@github.com:Shopify/
+	insteadOf = git@github.com:shopify/
+	insteadOf = ssh://git@github.com/Shopify/
+	insteadOf = ssh://git@github.com/shopify/
+[user]
+	name = Carmela Leung
+	email = carmela.leung@shopify.com
+[core]
+	editor = vim
+	commitGraph = true
+	excludesfile = /Users/carmelaleung/.gitignore
+[gc]
+	writeCommitGraph = true
+[rerere]
+  enabled = true
+[credential]
+	helper = 
+	helper = store --file /opt/dev/var/private/git_credential_store
+[init]
+	defaultBranch = main
