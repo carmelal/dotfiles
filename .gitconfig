@@ -19,3 +19,5 @@
 	postBuffer = 157286400
 [grep]
 	ignoreCase = true
+[push]
+  autoSetupRemote = true
