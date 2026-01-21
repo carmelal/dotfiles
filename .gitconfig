@@ -3,7 +3,6 @@
 	email = carmela.mn.leung@gmail.com
 [core]
 	editor = vim
-	excludesfile = /Users/carmelaleung/.gitignore
 [rerere]
   enabled = true
 [init]
