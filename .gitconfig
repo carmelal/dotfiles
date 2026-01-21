@@ -5,8 +5,6 @@
 	editor = vim
 [rerere]
   enabled = true
-[init]
-	path = /Users/carmelaleung/.config/dev/gitconfig
 [alias]
 	co = !git checkout
 	destroy = !git checkout main && git branch | grep -v "\\*" | xargs git branch -D
