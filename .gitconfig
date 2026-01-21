@@ -1,0 +1,21 @@
+[user]
+	name = Carmela Leung
+	email = carmela.mn.leung@gmail.com
+[core]
+	editor = vim
+[rerere]
+  enabled = true
+[alias]
+	co = !git checkout
+	destroy = !git checkout main && git branch | grep -v "\\*" | xargs git branch -D
+  hist = !git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	new = !git checkout -b
+	remain = !git checkout main && git pull && git checkout - && git rebase main
+	unstage = !git restore --staged
+	wip = !git add . && git commit -m "WIP"
+[http]
+	postBuffer = 157286400
+[grep]
+	ignoreCase = true
+[push]
+  autoSetupRemote = true
